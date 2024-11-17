@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'ProjetoTarefas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_tarefas',
-        'USER': 'root',
-        'PASSWORD': 'senha123',
-        'HOST': 'localhost',
+        'NAME': 'Malkemal$default',
+        'USER': 'Malkemal',
+        'PASSWORD': 'kP9d5KYXkczrZ9a',
+        'HOST': 'Malkemal.mysql.pythonanywhere-services.com',
         'PORT': '3306'
     }
 }
