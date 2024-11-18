@@ -21,4 +21,6 @@ urlpatterns = [
     path('tarefa/excluir/<int:pk>', views.TarefaDeleteView.as_view(), name='deleta_tarefa'),
 
     path('atualiza_status/<int:pk>/', views.atualiza_status, name='atualiza_status'),
+
+
 ]

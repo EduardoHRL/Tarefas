@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'widget_tweaks'
 ]
 
+AUTH_USER_MODEL = 'auth.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
