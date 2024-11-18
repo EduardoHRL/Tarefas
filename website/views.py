@@ -105,11 +105,5 @@ def atualiza_status(request, pk):
         tarefa.save()
         return HttpResponseRedirect(reverse('lista_tarefas'))
 
-def listar_dados(request):
-    if request.user.is_authenticated:
-        dados = Login.objects.filter(usuario=request.user)
-        return render(request, 'dados/listar.html', {'dados': dados})
-    else:
-        return reverse('login') 
 
 
