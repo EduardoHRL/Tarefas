@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView
 from website.forms import *
 
 def index(request):
-    return render(request, 'login.html')
+    return render(request, 'index.html')
 
 def usuarios(request):
 
