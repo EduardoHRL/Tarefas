@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['Malkemal.pythonanywhere.com']
 
+LOGIN_URL = '/'
 
 # Application definition
 

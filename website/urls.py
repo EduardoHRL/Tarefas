@@ -3,7 +3,11 @@ from django.urls import include, path
 from website import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.logar, name='logar'),
+
+    path('index/', views.index, name='index'),
+
+    path('cadastro/', views.cadastro, name='cadastro'),
 
     path('usuarios/', views.UsuarioListView.as_view(), name='lista_usuarios'),
 
@@ -21,5 +25,4 @@ urlpatterns = [
     path('tarefa/excluir/<int:pk>', views.TarefaDeleteView.as_view(), name='deleta_tarefa'),
 
     path('atualiza_status/<int:pk>/', views.atualiza_status, name='atualiza_status'),
-
 ]
