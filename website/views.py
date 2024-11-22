@@ -49,24 +49,83 @@ def cadastro(request):
 
         
     return render(request, 'cadastro.html')
+    
+def usuarios(request):
+
+    usuarios = Usuario.objects.all()
+
+    contexto = {'usuarios': usuarios}
+
+    return render(request, 'usuarios.html', contexto)
+
+def cria_usuario(request):
+    form = request.POST.get.all()
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('lista_usuarios'))
+
+    return render(request, 'form_usuario.html', {'form_usuario': form})
+
+def tarefas(request):
+
+    tarefas = Tarefa.objects.all()
+
+    contexto = {'tarefas': tarefas}
+
+    return render(request, 'tarefas.html', contexto)
+
+def cria_tarefa(request):
+    form = request.POST.get.all()
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('lista_tarefas'))
+    
+    return render(request, 'form_tarefa.html', {'form_tarefa': form})
+
+class UsuarioListView(LoginRequiredMixin, ListView):
+    template_name = 'lista_usuarios.html'
+    model = Usuario
+    context_object_name = 'usuarios'
+
+class UsuarioCreateView(LoginRequiredMixin,CreateView):
+    template_name = 'cadastra_usuario.html'
+    model = Usuario
+    form_class = InsereUsuarioForm
+    success_url = reverse_lazy('lista_usuarios')
+
+class UsuarioUpdateView(LoginRequiredMixin,UpdateView):
+    template_name = 'atualiza.html'
+    model = Usuario
+    fields = '__all__'
+    context_object_name = 'usuarios'
+
+    def get_object(self):
+        usuario = None
+
+        id = self.kwargs.get(self.pk_url_kwarg)
+        if id is not None:
+            usuario = Usuario.objects.filter(usu_codigo=id).first()
+        return usuario
+    
+    success_url = reverse_lazy('lista_usuarios')
+
+class UsuarioDeleteView(LoginRequiredMixin,DeleteView):
+    template_name = 'exclui_usuario.html'
+    model = Usuario
+    content_object_name = 'usuarios'
+    success_url = reverse_lazy('lista_usuarios')
+
 
 class TarefaListView(LoginRequiredMixin,ListView):
     template_name = 'lista_tarefas.html'
     model = Tarefa
     context_object_name = 'tarefas'
 
-    def get_queryset(self):
-        return Tarefa.objects.filter(user=self.request.user)
-
 class TarefaCreateView(LoginRequiredMixin,CreateView):
     template_name = 'cadastra_tarefa.html'
     model = Tarefa
     form_class = InsereTarefaForm
     success_url = reverse_lazy('lista_tarefas')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 class TarefaDeleteView(LoginRequiredMixin,DeleteView):
     template_name = 'exclui_tarefa.html'
